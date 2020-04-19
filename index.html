@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hunt Duck</title>
+    <link rel="stylesheet" href="style.min.css">
+</head>
+<body>
+<input type="checkbox" id="startGame">
+<label for="startGame" class="startGame">
+    <img src="./images/press_start.gif" alt="start">
+</label>
+<div class="main">
+    <div class="background-nature p-absolute"></div>
+    <div class="p-relative wrapper-result">
+        <div class="p-absolute">
+            <div class="result">
+                <span>YOUR RESULT:</span>
+                <img src="./images/arrows.png">
+            </div>
+        </div>
+    </div>
+    <div class="bird-black">
+        <input type="checkbox" id="b-one" class="done" hidden>
+        <label for="b-one">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-one p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <div class="bird-black">
+        <input type="checkbox" id="b-two" class="done" hidden>
+        <label for="b-two">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-two p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <div class="bird-blue">
+        <input type="checkbox" id="b-three" class="done" hidden>
+        <label for="b-three">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-three p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <div class="bird-black">
+        <input type="checkbox" id="b-four" class="done" hidden>
+        <label for="b-four">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-four p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <div class="bird-blue">
+        <input type="checkbox" id="b-five" class="done" hidden>
+        <label for="b-five">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-five p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <div class="bird-blue">
+        <input type="checkbox" id="b-six" class="done" hidden>
+        <label for="b-six">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-six p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <div class="bird-black">
+        <input type="checkbox" id="b-seven" class="done" hidden>
+        <label for="b-seven">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-seven p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <div class="bird-blue">
+        <input type="checkbox" id="b-eight" class="done" hidden>
+        <label for="b-eight">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-eight p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <div class="bird-black">
+        <input type="checkbox" id="b-nine" class="done" hidden>
+        <label for="b-nine">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-nine p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <div class="bird-blue">
+        <input type="checkbox" id="b-ten" class="done" hidden>
+        <label for="b-ten">
+            <div class="fly-down dead p-absolute"></div>
+            <div class="bird bird-ten p-absolute">
+                <div class="flying alive p-absolute"></div>
+            </div>
+        </label>
+        <div class="answers">
+            <p class="before answer"></p>
+            <p class="yes answer"></p>
+            <p class="no answer"></p>
+        </div>
+        <div class="loop-backpack p-absolute"></div>
+    </div>
+    <img class="gameOver" src="./images/game_over.png" alt="game over">
+    <div class="backpack-wrapp p-absolute">
+        <div class="backpack p-absolute"></div>
+    </div>
+</div>
+
+
+</body>
+</html>

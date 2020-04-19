@@ -1,0 +1,1143 @@
+/*=========================================================
+##  VARIABLES
+=========================================================*/
+:root {
+    --time-hidden-first-bird: 7s;
+    --time-hidden-second-bird: 10s;
+    --time-hidden-third-bird: 12s;
+    --time-hidden-fourth-bird: 16s;
+    --time-hidden-fifth-bird: 15s;
+    --time-hidden-sixth-bird: 19s;
+    --time-hidden-seventh-bird: 23s;
+    --time-hidden-eighth-bird: 28s;
+    --time-hidden-ninth-bird: 28s;
+    --time-hidden-tenth-bird: 31s;
+
+    --time-search: 1s;
+
+    --time-search-first-bird: 2s;
+    --time-search-second-bird: 4s;
+    --time-search-third-bird: 5s;
+    --time-search-fourth-bird: 9s;
+    --time-search-fifth-bird: 8s;
+    --time-search-sixth-bird: 12s;
+    --time-search-seventh-bird: 16s;
+    --time-search-eighth-bird: 21s;
+    --time-search-ninth-bird: 21s;
+    --time-search-tenth-bird: 24s;
+
+    --result-time: 29s;
+}
+
+/*=========================================================
+##  COMMON STYLES
+=========================================================*/
+
+*,
+*:before,
+*:after,
+label:hover {
+    cursor: url('./images/target.png'), auto;
+}
+
+body,
+.main,
+.p-relative {
+    position: relative;
+}
+
+input {
+    position: absolute;
+    top: -100%;
+    visibility: hidden;
+}
+
+label {
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #3cbcfc;
+}
+
+p,
+.answer {
+    margin: 3px;
+    color: white;
+    font-weight: 900;
+}
+
+/*=========================================================
+##  MAIN STYLES
+=========================================================*/
+
+
+label[for="startGame"] {
+    display: block;
+    max-width: 600px;
+    height: 450px;
+}
+
+
+input[id="startGame"]:checked ~ .main .result {
+    -webkit-transition-duration: 3s;
+            transition-duration: 3s;
+    -webkit-transition-property: visibility;
+    transition-property: visibility;
+    -webkit-transition-delay: var(--result-time);
+            transition-delay: var(--result-time);
+    visibility: visible;
+}
+
+.background-nature {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('./images/duck_hunt_bgr.png');
+    background-repeat: repeat-x;
+    background-position-y: bottom;
+}
+
+.main {
+    -webkit-transition: opacity 1s, height 1s, visibility 40s;
+    transition: opacity 1s, height 1s, visibility 40s;
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 110vh;
+}
+
+.startGame {
+    z-index: 10;
+}
+
+input[id="startGame"]:checked ~ .main {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    height: 100vh;
+}
+
+.startGame,
+.gameOver,
+.p-absolute {
+    position: absolute;
+}
+
+.startGame,
+.gameOver {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+
+.gameOver {
+    visibility: hidden;
+}
+
+/*=========================================================
+##  BACKPACK STYLES
+=========================================================*/
+
+.backpack {
+    -webkit-transition: background-image 0.5s;
+    transition: background-image 0.5s;
+}
+
+.backpack,
+.loop-backpack {
+    background-image: url('images/backpack.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+}
+
+.loop-backpack {
+    margin: 11px;
+    z-index: 1;
+    -webkit-transition: background-image 0.5s, visibility 2s, opacity 2s;
+    transition: background-image 0.5s, visibility 2s, opacity 2s;
+}
+
+input[id*="b-"]:checked ~ .loop-backpack {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    z-index: 5;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    visibility: hidden;
+}
+
+.loop-backpack:hover,
+.backpack:hover {
+    background-image: url('images/chicken.png');
+}
+
+.loop-backpack,
+.backpack-wrapp {
+    bottom: 5px;
+    left: 5px;
+}
+
+.backpack-wrapp {
+    background-color: #fff;
+    width: 70px;
+    height: 70px;
+    z-index: 3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border: 2px solid greenyellow;
+    border-radius: 15px;
+}
+
+/*=========================================================
+##  RESULTS STYLES
+=========================================================*/
+
+input[id="startGame"]:checked ~ .main div[class*="bird-"] .answers .before {
+    visibility: hidden;
+}
+
+input[id="startGame"]:checked ~ .main div[class*="bird-"] .answers .before:before {
+    background-image: url('images/hunt.png');
+    -webkit-transition-property: background-image;
+    transition-property: background-image;
+    -webkit-transition-duration: var(--time-search);
+            transition-duration: var(--time-search);
+}
+
+label[for="b-one"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-first-bird);
+            transition-delay: var(--time-hidden-first-bird);
+}
+
+label[for="b-two"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-second-bird);
+            transition-delay: var(--time-hidden-second-bird);
+}
+
+label[for="b-three"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-third-bird);
+            transition-delay: var(--time-hidden-third-bird);
+}
+
+label[for="b-four"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-fourth-bird);
+            transition-delay: var(--time-hidden-fourth-bird);
+}
+
+label[for="b-five"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-fifth-bird);
+            transition-delay: var(--time-hidden-fifth-bird);
+}
+
+label[for="b-six"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-sixth-bird);
+            transition-delay: var(--time-hidden-sixth-bird);
+}
+
+label[for="b-seven"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-seventh-bird);
+            transition-delay: var(--time-hidden-seventh-bird);
+}
+
+label[for="b-eight"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-eighth-bird);
+            transition-delay: var(--time-hidden-eighth-bird);
+}
+
+label[for="b-nine"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-ninth-bird);
+            transition-delay: var(--time-hidden-ninth-bird);
+}
+
+label[for="b-ten"] ~ .answers .before {
+    -webkit-transition-delay: var(--time-hidden-tenth-bird);
+            transition-delay: var(--time-hidden-tenth-bird);
+}
+
+/*=========================================================*/
+
+label[for="b-one"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-first-bird);
+            transition-delay: var(--time-search-first-bird);
+}
+
+label[for="b-two"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-second-bird);
+            transition-delay: var(--time-search-second-bird);
+}
+
+label[for="b-three"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-third-bird);
+            transition-delay: var(--time-search-third-bird);
+}
+
+label[for="b-four"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-fourth-bird);
+            transition-delay: var(--time-search-fourth-bird);
+}
+
+label[for="b-five"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-fifth-bird);
+            transition-delay: var(--time-search-fifth-bird);
+}
+
+label[for="b-six"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-sixth-bird);
+            transition-delay: var(--time-search-sixth-bird);
+}
+
+label[for="b-seven"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-seventh-bird);
+            transition-delay: var(--time-search-seventh-bird);
+}
+
+label[for="b-eight"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-eighth-bird);
+            transition-delay: var(--time-search-eighth-bird);
+}
+
+label[for="b-nine"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-ninth-bird);
+            transition-delay: var(--time-search-ninth-bird);
+}
+
+label[for="b-ten"] ~ .answers .before:before {
+    -webkit-transition-delay: var(--time-search-tenth-bird);
+            transition-delay: var(--time-search-tenth-bird);
+}
+
+/*=========================================================*/
+
+.yes {
+    border: 2px solid green;
+}
+
+.no {
+    border: 2px solid white;
+}
+
+.before,
+.yes,
+.no {
+    background-color: #77c8ff;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.before:before,
+.yes:before,
+.no:before {
+    background-size: 50px 50px;
+    display: block;
+    background-position: top;
+    width: 50px;
+    height: 50px;
+    content: "";
+}
+
+
+.bird-black .yes:before {
+    background-image: url('images/success_black.gif');
+}
+
+.bird-blue .yes:before {
+    background-image: url('images/success_blue.gif');
+    -webkit-transition: background-image 0.5s;
+    transition: background-image 0.5s;
+}
+
+.bird-black .before:before,
+.bird-blue .before:before {
+    background-image: url('images/goal.png');
+}
+
+.no:before {
+    background-image: url('images/lose.gif');
+}
+
+.no,
+[id="b-one"]:checked ~ .answers .yes,
+[id="b-two"]:checked ~ .answers .yes,
+[id="b-three"]:checked ~ .answers .yes,
+[id="b-four"]:checked ~ .answers .yes,
+[id="b-five"]:checked ~ .answers .yes,
+[id="b-six"]:checked ~ .answers .yes,
+[id="b-seven"]:checked ~ .answers .yes,
+[id="b-eight"]:checked ~ .answers .yes,
+[id="b-nine"]:checked ~ .answers .yes,
+[id="b-ten"]:checked ~ .answers .yes {
+    display: inline-block;
+}
+
+.yes,
+input,
+input[id="startGame"]:checked + label,
+[id="b-one"]:checked ~ .answers .no,
+[id="b-two"]:checked ~ .answers .no,
+[id="b-three"]:checked ~ .answers .no,
+[id="b-four"]:checked ~ .answers .no,
+[id="b-five"]:checked ~ .answers .no,
+[id="b-six"]:checked ~ .answers .no,
+[id="b-seven"]:checked ~ .answers .no,
+[id="b-eight"]:checked ~ .answers .no,
+[id="b-nine"]:checked ~ .answers .no,
+[id="b-ten"]:checked ~ .answers .no {
+    display: none;
+}
+
+.answers {
+    position: relative;
+}
+
+.before {
+    position: absolute;
+    -webkit-transition-property: visibility;
+    transition-property: visibility;
+    border: 2px solid red;
+}
+
+label[for="b-one"] ~ .answers .before:before {
+    -webkit-transition: background-image 2s ease 2s;
+    transition: background-image 2s ease 2s;
+}
+
+/*=========================================================*/
+
+.wrapper-result {
+    width: 100%;
+    max-width: 150px;
+    height: 70px;
+}
+
+.wrapper-result > div {
+    top: 0;
+}
+
+.result {
+    visibility: hidden;
+    border-radius: 20px;
+    padding: 0 10px;
+    font-weight: 900;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+    margin: 10px 0;
+    color: black;
+    background-color: yellow;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-height: 50px;
+}
+
+.result span {
+    -ms-flex-item-align: center;
+        align-self: center;
+}
+
+.result img {
+    width: 50px;
+    -o-object-fit: contain;
+       object-fit: contain;
+}
+
+/*=========================================================
+##  BIRD FLYING, DIEING STYLES
+=========================================================*/
+
+.bird-blue .dead {
+    background-image: url('images/duck-blue-dieing.gif');
+}
+
+.bird-black .dead {
+    background-image: url('images/duck-hunt-dieing.gif');
+}
+
+
+.fly-down {
+    background-size: 80px;
+    width: 80px;
+    height: 80px;
+}
+
+.bird, .fly-down {
+    pointer-events: none;
+}
+
+
+.bird,
+label {
+    max-width: 100px;
+}
+
+input[id="startGame"]:checked ~ .main .done:checked ~ label .dead {
+    bottom: 5%;
+}
+
+.bird,
+.fly-down,
+input[id="startGame"]:checked ~ .main .done:checked ~ label .dead {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+
+input[id="startGame"]:checked ~ .main .done:checked ~ label .alive {
+    display: none;
+}
+
+.flying {
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.bird-black .flying {
+    background-image: url('images/duck-black.gif');
+}
+
+.bird-blue .flying {
+    background-image: url('images/duck-blue.gif');
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+}
+
+.flying,
+.fly-start,
+.fly-finish {
+    top: 0;
+    width: 100px;
+    -o-object-fit: fill;
+       object-fit: fill;
+}
+
+.fly-start,
+.fly-finish {
+    height: auto;
+}
+
+/*=========================================================
+##  ANIMATION INITIALISATION
+=========================================================*/
+input[id="startGame"]:checked ~ .main .gameOver {
+    -webkit-animation: gameover 1000s ease 37s;
+            animation: gameover 1000s ease 37s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-one {
+    -webkit-animation: bird-one 5s ease 2s;
+            animation: bird-one 5s ease 2s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-two {
+    -webkit-animation: birdToRight 7s ease 3s;
+            animation: birdToRight 7s ease 3s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-three {
+    -webkit-animation: birdToLeft 8s ease 4s;
+            animation: birdToLeft 8s ease 4s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-four {
+    -webkit-animation: birdToRight 9s ease 7s;
+            animation: birdToRight 9s ease 7s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-five {
+    -webkit-animation: birdToLeft 7s ease 8s;
+            animation: birdToLeft 7s ease 8s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-six {
+    -webkit-animation: birdToLeft 6s ease 13s;
+            animation: birdToLeft 6s ease 13s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-seven {
+    -webkit-animation: birdToRight 9s ease 14s;
+            animation: birdToRight 9s ease 14s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-eight {
+    -webkit-animation: birdToLeft 9s ease 19s;
+            animation: birdToLeft 9s ease 19s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-nine {
+    -webkit-animation: birdToRight 8s ease 20s;
+            animation: birdToRight 8s ease 20s;
+}
+
+input[id="startGame"]:checked ~ .main .bird-ten {
+    -webkit-animation: birdToLeft 10s ease 21s;
+            animation: birdToLeft 10s ease 21s;
+}
+
+input[id="startGame"]:checked ~ .main .done:checked ~ label .dead {
+    -webkit-animation: dead 2s ease;
+            animation: dead 2s ease;
+}
+
+input[id="startGame"]:checked ~ .main {
+    -webkit-animation: result 8s ease var(--result-time);
+            animation: result 8s ease var(--result-time);
+}
+
+.fly-start {
+    -webkit-animation: flys 0.5s infinite;
+            animation: flys 0.5s infinite;
+}
+
+.fly-finish {
+    -webkit-animation: flyf 0.5s infinite;
+            animation: flyf 0.5s infinite;
+}
+
+/*=========================================================
+##  ANIMATIONS KEYFRAMES
+=========================================================*/
+
+/*----------------ИМИТАЦИЯ ВЗМАХОВ КРЫЛЬЕВ---------------*/
+
+@-webkit-keyframes flys {
+    0% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+    49% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+    50% {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+    100% {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+}
+
+@keyframes flys {
+    0% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+    49% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+    50% {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+    100% {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+}
+
+@-webkit-keyframes flyf {
+    0% {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+    49% {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+    50% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+    100% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+}
+
+@keyframes flyf {
+    0% {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+    49% {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+    50% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+    100% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+}
+
+/*----------------ТРАЕКТОРИЯ ПОЛЁТА ПТИЦ---------------*/
+
+@-webkit-keyframes bird-one {
+    0% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        right: 100%;
+        top: 10%;
+    }
+    25% {
+        right: 80%;
+        top: 50%;
+    }
+    50% {
+        right: 50%;
+        top: 30%;
+    }
+    75% {
+        right: 30%;
+        top: 40%;
+    }
+    100% {
+        pointer-events: auto;
+        z-index: 15;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        right: 0;
+        top: 10%;
+    }
+}
+
+@keyframes bird-one {
+    0% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        right: 100%;
+        top: 10%;
+    }
+    25% {
+        right: 80%;
+        top: 50%;
+    }
+    50% {
+        right: 50%;
+        top: 30%;
+    }
+    75% {
+        right: 30%;
+        top: 40%;
+    }
+    100% {
+        pointer-events: auto;
+        z-index: 15;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        right: 0;
+        top: 10%;
+    }
+}
+
+@-webkit-keyframes birdToRight {
+    0% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        right: 100%;
+        top: 20%;
+    }
+
+    10% {
+        right: 90%;
+        top: 30%;
+    }
+
+    20% {
+        right: 80%;
+        top: 20%;
+    }
+
+    30% {
+        right: 70%;
+        top: 25%;
+    }
+
+    40% {
+        right: 60%;
+        top: 15%;
+    }
+
+    50% {
+        right: 50%;
+        top: 30%;
+    }
+
+    60% {
+        right: 40%;
+        top: 25%;
+    }
+
+    70% {
+        right: 30%;
+        top: 40%;
+    }
+
+    80% {
+        right: 20%;
+        top: 30%;
+    }
+
+    90% {
+        right: 10%;
+        top: 35%;
+    }
+    95% {
+        right: 5%;
+        top: 25%;
+    }
+    100% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        right: 0;
+        top: 30%;
+    }
+}
+
+@keyframes birdToRight {
+    0% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        right: 100%;
+        top: 20%;
+    }
+
+    10% {
+        right: 90%;
+        top: 30%;
+    }
+
+    20% {
+        right: 80%;
+        top: 20%;
+    }
+
+    30% {
+        right: 70%;
+        top: 25%;
+    }
+
+    40% {
+        right: 60%;
+        top: 15%;
+    }
+
+    50% {
+        right: 50%;
+        top: 30%;
+    }
+
+    60% {
+        right: 40%;
+        top: 25%;
+    }
+
+    70% {
+        right: 30%;
+        top: 40%;
+    }
+
+    80% {
+        right: 20%;
+        top: 30%;
+    }
+
+    90% {
+        right: 10%;
+        top: 35%;
+    }
+    95% {
+        right: 5%;
+        top: 25%;
+    }
+    100% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        right: 0;
+        top: 30%;
+    }
+}
+
+@-webkit-keyframes birdToLeft {
+    0% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        left: 120%;
+        top: 20%;
+    }
+
+    10% {
+        left: 90%;
+        top: 30%;
+    }
+
+    20% {
+        left: 80%;
+        top: 20%;
+    }
+
+    30% {
+        left: 70%;
+        top: 25%;
+    }
+
+    40% {
+        left: 60%;
+        top: 15%;
+    }
+
+    50% {
+        left: 50%;
+        top: 30%;
+    }
+
+    60% {
+        left: 40%;
+        top: 25%;
+    }
+
+    70% {
+        left: 30%;
+        top: 40%;
+    }
+
+    80% {
+        left: 20%;
+        top: 30%;
+    }
+
+    90% {
+        left: 10%;
+        top: 35%;
+    }
+    95% {
+        left: 5%;
+        top: 25%;
+    }
+    100% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        left: -20%;
+        top: 30%;
+    }
+}
+
+@keyframes birdToLeft {
+    0% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        left: 120%;
+        top: 20%;
+    }
+
+    10% {
+        left: 90%;
+        top: 30%;
+    }
+
+    20% {
+        left: 80%;
+        top: 20%;
+    }
+
+    30% {
+        left: 70%;
+        top: 25%;
+    }
+
+    40% {
+        left: 60%;
+        top: 15%;
+    }
+
+    50% {
+        left: 50%;
+        top: 30%;
+    }
+
+    60% {
+        left: 40%;
+        top: 25%;
+    }
+
+    70% {
+        left: 30%;
+        top: 40%;
+    }
+
+    80% {
+        left: 20%;
+        top: 30%;
+    }
+
+    90% {
+        left: 10%;
+        top: 35%;
+    }
+    95% {
+        left: 5%;
+        top: 25%;
+    }
+    100% {
+        z-index: 15;
+        pointer-events: auto;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        left: -20%;
+        top: 30%;
+    }
+}
+
+@-webkit-keyframes dead {
+    0% {
+        z-index: 4;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        left: 50%;
+        bottom: 50%;
+    }
+    10% {
+        bottom: 55%;
+    }
+    90% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+    100% {
+        z-index: 4;
+        opacity: 0.2;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+        left: 0;
+        bottom: 5%;
+    }
+}
+
+@keyframes dead {
+    0% {
+        z-index: 4;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        left: 50%;
+        bottom: 50%;
+    }
+    10% {
+        bottom: 55%;
+    }
+    90% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+    100% {
+        z-index: 4;
+        opacity: 0.2;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+        left: 0;
+        bottom: 5%;
+    }
+}
+
+/*----------------ИГРОВЫЕ МАНИПУЛЯЦИИ---------------*/
+
+@-webkit-keyframes gameover {
+    0% {
+        visibility: visible;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+@keyframes gameover {
+    0% {
+        visibility: visible;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+@-webkit-keyframes result {
+    0% {
+        -webkit-box-align: center;
+                align-items: center;
+    }
+    25% {
+        -webkit-transform: translateX(200px) scale(2);
+                transform: translateX(200px) scale(2);
+    }
+    75% {
+        -webkit-transform: translateX(-200px) scale(2);
+                transform: translateX(-200px) scale(2);
+    }
+    100% {
+        -webkit-box-align: center;
+                align-items: center;
+    }
+}
+
+@keyframes result {
+    0% {
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                    -ms-grid-row-align: center;
+                align-items: center;
+    }
+    25% {
+        -webkit-transform: translateX(200px) scale(2);
+                transform: translateX(200px) scale(2);
+    }
+    75% {
+        -webkit-transform: translateX(-200px) scale(2);
+                transform: translateX(-200px) scale(2);
+    }
+    100% {
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                    -ms-grid-row-align: center;
+                align-items: center;
+    }
+}
